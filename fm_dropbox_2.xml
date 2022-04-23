@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_2.dtd'>
+<nta>
+	<declaration>// Place global declarations here.
+const int NUM_USERS = 2;
+chan ownerRequestLink, sendValidLink;
+chan giveAccessToUser[NUM_USERS];
+chan accessGranted[NUM_USERS];
+int userID = 0;
+chan userReqEdit[NUM_USERS], userReqView[NUM_USERS];
+
+
+bool giveEditAccess;</declaration>
+	<template>
+		<name>Server</name>
+		<declaration>int i = 0;</declaration>
+		<location id="id0" x="-119" y="-221">
+			<name x="-136" y="-255">initial</name>
+		</location>
+		<location id="id1" x="-119" y="-85">
+			<name x="-153" y="-119">Event_Loop</name>
+		</location>
+		<location id="id2" x="-229" y="25">
+			<name x="-306" y="34">Owner_Requested_Link</name>
+		</location>
+		<location id="id3" x="144" y="17">
+		</location>
+		<location id="id4" x="297" y="68">
+		</location>
+		<init ref="id0"/>
+		<transition>
+			<source ref="id4"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="179" y="-63">accessGranted[userID]!</label>
+			<nail x="340" y="-8"/>
+			<nail x="161" y="-85"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="161" y="93">!giveEditAccess</label>
+			<label kind="synchronisation" x="161" y="76">userReqView[userID]!</label>
+			<nail x="204" y="76"/>
+		</transition>
+		<transition>
+			<source ref="id3"/>
+			<target ref="id4"/>
+			<label kind="guard" x="187" y="-25">giveEditAccess</label>
+			<label kind="synchronisation" x="187" y="-8">userReqEdit[userID]!</label>
+			<nail x="246" y="8"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id3"/>
+			<label kind="synchronisation" x="-34" y="-42">giveAccessToUser[userID]?</label>
+		</transition>
+		<transition>
+			<source ref="id2"/>
+			<target ref="id1"/>
+			<label kind="synchronisation" x="-255" y="-85">sendValidLink!</label>
+			<nail x="-221" y="-68"/>
+		</transition>
+		<transition>
+			<source ref="id1"/>
+			<target ref="id2"/>
+			<label kind="synchronisation" x="-204" y="-17">ownerRequestLink?</label>
+			<nail x="-136" y="0"/>
+		</transition>
+		<transition>
+			<source ref="id0"/>
+			<target ref="id1"/>
+		</transition>
+	</template>
+	<template>
+		<name x="5" y="5">Owner</name>
+		<parameter>chan &amp;requestLink, chan &amp;validLink</parameter>
+		<declaration>// Place local declarations here.
+int FILE_LIMIT = 5; 
+int numberOfFiles = 0;
+int numberOfLinks = 0;</declaration>
+		<location id="id5" x="-697" y="-850">
+			<name x="-714" y="-884">Initial</name>
+		</location>
+		<location id="id6" x="-697" y="-654">
+			<name x="-707" y="-688">menu</name>
+		</location>
+		<location id="id7" x="-969" y="-654">
+			<name x="-1011" y="-646">generate_link</name>
+		</location>
+		<location id="id8" x="-408" y="-654">
+			<name x="-418" y="-688">create_file</name>
+		</location>
+		<location id="id9" x="-680" y="-467">
+			<name x="-714" y="-501">give_access</name>
+		</location>
+		<location id="id10" x="-1232" y="-348">
+		</location>
+		<location id="id11" x="-952" y="-484">
+		</location>
+		<init ref="id5"/>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-985" y="-611">userID &gt;= NUM_USERS -1</label>
+		</transition>
+		<transition>
+			<source ref="id11"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-918" y="-518">userID &lt; NUM_USERS-1</label>
+			<label kind="assignment" x="-867" y="-501">userID++</label>
+		</transition>
+		<transition>
+			<source ref="id10"/>
+			<target ref="id11"/>
+			<label kind="synchronisation" x="-1190" y="-459">accessGranted[userID]?</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id10"/>
+			<label kind="guard" x="-1011" y="-442">userID &lt; NUM_USERS</label>
+			<label kind="synchronisation" x="-1028" y="-425">giveAccessToUser[userID]!</label>
+			<label kind="assignment" x="-1011" y="-408">giveEditAccess = true</label>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id6"/>
+			<label kind="guard" x="-679" y="-561">userID &gt;= NUM_USERS -1</label>
+			<nail x="-629" y="-561"/>
+		</transition>
+		<transition>
+			<source ref="id9"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-629" y="-492">userID &lt; NUM_USERS-1</label>
+			<label kind="assignment" x="-612" y="-484">userID++</label>
+			<nail x="-552" y="-467"/>
+			<nail x="-561" y="-416"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id9"/>
+			<label kind="guard" x="-714" y="-595">userID == 0</label>
+			<label kind="assignment" x="-714" y="-578">userID = 0</label>
+		</transition>
+		<transition>
+			<source ref="id8"/>
+			<target ref="id6"/>
+			<label kind="assignment" x="-578" y="-680">numberOfFiles++</label>
+			<nail x="-518" y="-688"/>
+		</transition>
+		<transition>
+			<source ref="id7"/>
+			<target ref="id6"/>
+			<label kind="synchronisation" x="-875" y="-714">validLink?</label>
+			<label kind="assignment" x="-901" y="-688">numberOfLinks++</label>
+			<nail x="-833" y="-697"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id8"/>
+			<label kind="guard" x="-620" y="-603">numberOfFiles &lt;= FILE_LIMIT</label>
+			<nail x="-518" y="-603"/>
+		</transition>
+		<transition>
+			<source ref="id6"/>
+			<target ref="id7"/>
+			<label kind="guard" x="-926" y="-586">numberOfFiles &gt; numberOfLinks</label>
+			<label kind="synchronisation" x="-875" y="-603">requestLink!</label>
+			<nail x="-833" y="-595"/>
+		</transition>
+		<transition>
+			<source ref="id5"/>
+			<target ref="id6"/>
+		</transition>
+	</template>
+	<template>
+		<name>User</name>
+		<parameter>chan &amp;requestEdit, chan &amp;requestView</parameter>
+		<declaration>bool canView;
+bool canEdit;</declaration>
+		<location id="id12" x="-459" y="-1028">
+			<name x="-476" y="-1062">initial</name>
+		</location>
+		<location id="id13" x="-459" y="-807">
+			<name x="-476" y="-799">menu</name>
+		</location>
+		<location id="id14" x="-612" y="-722">
+		</location>
+		<init ref="id12"/>
+		<transition>
+			<source ref="id14"/>
+			<target ref="id13"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-544" y="-739">requestView?</label>
+			<label kind="assignment" x="-544" y="-722">canView = true</label>
+			<nail x="-510" y="-722"/>
+		</transition>
+		<transition>
+			<source ref="id13"/>
+			<target ref="id14"/>
+			<label kind="synchronisation" x="-629" y="-850">requestEdit?</label>
+			<label kind="assignment" x="-637" y="-833">canEdit = true,
+canView = true</label>
+			<nail x="-586" y="-807"/>
+		</transition>
+		<transition>
+			<source ref="id12"/>
+			<target ref="id13"/>
+		</transition>
+	</template>
+	<system>// Place template instantiations here.
+Bob = Owner(ownerRequestLink, sendValidLink);
+Paul = User(userReqEdit[0], userReqView[0]);
+Alice = User(userReqEdit[1], userReqView[1]);
+dropboxServer = Server();
+// List one or more processes to be composed into a system.
+system dropboxServer, Bob, Paul, Alice;
+</system>
+	<queries>
+		<query>
+			<formula>A[] Bob.numberOfFiles &gt;= Bob.numberOfLinks</formula>
+			<comment>Assert that the owner can't create more links than the number of files the owner has created.
+Safety Property
+It is a reqular safety property due to the presence of a File Limit.
+Note: We need a File limit otherwise, the user can create infinite files and the property can't be verified. </comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Paul.canEdit &amp;&amp; Alice.canEdit)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Paul.canEdit &amp;&amp; Alice.canView)</formula>
+			<comment></comment>
+		</query>
+	</queries>
+</nta>
