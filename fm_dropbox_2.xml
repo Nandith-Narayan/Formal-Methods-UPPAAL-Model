@@ -14,57 +14,57 @@ bool giveEditAccess;</declaration>
 	<template>
 		<name>Server</name>
 		<declaration>int i = 0;</declaration>
-		<location id="id0" x="-119" y="-221">
-			<name x="-136" y="-255">initial</name>
+		<location id="id0" x="-297" y="-195">
+			<name x="-314" y="-229">initial</name>
 		</location>
-		<location id="id1" x="-119" y="-85">
-			<name x="-153" y="-119">Event_Loop</name>
+		<location id="id1" x="-297" y="-59">
+			<name x="-340" y="-42">Event_Loop</name>
 		</location>
-		<location id="id2" x="-229" y="25">
-			<name x="-306" y="34">Owner_Requested_Link</name>
+		<location id="id2" x="-628" y="-59">
+			<name x="-807" y="-68">Owner_Requested_Link</name>
 		</location>
-		<location id="id3" x="144" y="17">
+		<location id="id3" x="-25" y="85">
 		</location>
-		<location id="id4" x="297" y="68">
+		<location id="id4" x="178" y="-59">
 		</location>
 		<init ref="id0"/>
 		<transition>
 			<source ref="id4"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="179" y="-63">accessGranted[userID]!</label>
-			<nail x="340" y="-8"/>
-			<nail x="161" y="-85"/>
+			<label kind="synchronisation" x="-68" y="-153">accessGranted[userID]!</label>
+			<nail x="119" y="-59"/>
+			<nail x="-17" y="-59"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
-			<label kind="guard" x="161" y="93">!giveEditAccess</label>
-			<label kind="synchronisation" x="161" y="76">userReqView[userID]!</label>
-			<nail x="204" y="76"/>
+			<label kind="guard" x="119" y="110">!giveEditAccess</label>
+			<label kind="synchronisation" x="85" y="93">userReqView[userID]!</label>
+			<nail x="178" y="85"/>
 		</transition>
 		<transition>
 			<source ref="id3"/>
 			<target ref="id4"/>
-			<label kind="guard" x="187" y="-25">giveEditAccess</label>
-			<label kind="synchronisation" x="187" y="-8">userReqEdit[userID]!</label>
-			<nail x="246" y="8"/>
+			<label kind="guard" x="25" y="-8">giveEditAccess</label>
+			<label kind="synchronisation" x="8" y="8">userReqEdit[userID]!</label>
+			<nail x="68" y="25"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id3"/>
-			<label kind="synchronisation" x="-34" y="-42">giveAccessToUser[userID]?</label>
+			<label kind="synchronisation" x="-255" y="0">giveAccessToUser[userID]?</label>
 		</transition>
 		<transition>
 			<source ref="id2"/>
 			<target ref="id1"/>
-			<label kind="synchronisation" x="-255" y="-85">sendValidLink!</label>
-			<nail x="-221" y="-68"/>
+			<label kind="synchronisation" x="-509" y="-119">sendValidLink!</label>
+			<nail x="-458" y="-93"/>
 		</transition>
 		<transition>
 			<source ref="id1"/>
 			<target ref="id2"/>
-			<label kind="synchronisation" x="-204" y="-17">ownerRequestLink?</label>
-			<nail x="-136" y="0"/>
+			<label kind="synchronisation" x="-526" y="-17">ownerRequestLink?</label>
+			<nail x="-458" y="-25"/>
 		</transition>
 		<transition>
 			<source ref="id0"/>
@@ -78,94 +78,94 @@ bool giveEditAccess;</declaration>
 int FILE_LIMIT = 5; 
 int numberOfFiles = 0;
 int numberOfLinks = 0;</declaration>
-		<location id="id5" x="-697" y="-850">
-			<name x="-714" y="-884">Initial</name>
+		<location id="id5" x="-799" y="-858">
+			<name x="-816" y="-892">Initial</name>
 		</location>
-		<location id="id6" x="-697" y="-654">
-			<name x="-707" y="-688">menu</name>
+		<location id="id6" x="-799" y="-662">
+			<name x="-816" y="-646">menu</name>
 		</location>
-		<location id="id7" x="-969" y="-654">
-			<name x="-1011" y="-646">generate_link</name>
+		<location id="id7" x="-1258" y="-663">
+			<name x="-1368" y="-671">generate_link</name>
 		</location>
-		<location id="id8" x="-408" y="-654">
-			<name x="-418" y="-688">create_file</name>
+		<location id="id8" x="-408" y="-663">
+			<name x="-391" y="-671">create_file</name>
 		</location>
-		<location id="id9" x="-680" y="-467">
-			<name x="-714" y="-501">give_access</name>
+		<location id="id9" x="-459" y="-450">
+			<name x="-493" y="-433">give_access</name>
 		</location>
-		<location id="id10" x="-1232" y="-348">
+		<location id="id10" x="-782" y="-314">
 		</location>
-		<location id="id11" x="-952" y="-484">
+		<location id="id11" x="-1122" y="-450">
 		</location>
 		<init ref="id5"/>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-985" y="-611">userID &gt;= NUM_USERS -1</label>
+			<label kind="guard" x="-1037" y="-535">userID &gt;= NUM_USERS -1</label>
 		</transition>
 		<transition>
 			<source ref="id11"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-918" y="-518">userID &lt; NUM_USERS-1</label>
-			<label kind="assignment" x="-867" y="-501">userID++</label>
+			<label kind="guard" x="-884" y="-484">userID &lt; NUM_USERS-1</label>
+			<label kind="assignment" x="-833" y="-467">userID++</label>
 		</transition>
 		<transition>
 			<source ref="id10"/>
 			<target ref="id11"/>
-			<label kind="synchronisation" x="-1190" y="-459">accessGranted[userID]?</label>
+			<label kind="synchronisation" x="-952" y="-391">accessGranted[userID]?</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id10"/>
-			<label kind="guard" x="-1011" y="-442">userID &lt; NUM_USERS</label>
-			<label kind="synchronisation" x="-1028" y="-425">giveAccessToUser[userID]!</label>
-			<label kind="assignment" x="-1011" y="-408">giveEditAccess = true</label>
+			<label kind="guard" x="-671" y="-399">userID &lt; NUM_USERS</label>
+			<label kind="synchronisation" x="-688" y="-382">giveAccessToUser[userID]!</label>
+			<label kind="assignment" x="-671" y="-365">giveEditAccess = true</label>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id6"/>
-			<label kind="guard" x="-679" y="-561">userID &gt;= NUM_USERS -1</label>
-			<nail x="-629" y="-561"/>
+			<label kind="guard" x="-612" y="-603">userID &gt;= NUM_USERS -1</label>
+			<nail x="-612" y="-595"/>
 		</transition>
 		<transition>
 			<source ref="id9"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-629" y="-492">userID &lt; NUM_USERS-1</label>
-			<label kind="assignment" x="-612" y="-484">userID++</label>
-			<nail x="-552" y="-467"/>
-			<nail x="-561" y="-416"/>
+			<label kind="guard" x="-442" y="-484">userID &lt; NUM_USERS-1</label>
+			<label kind="assignment" x="-391" y="-467">userID++</label>
+			<nail x="-306" y="-450"/>
+			<nail x="-315" y="-399"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-714" y="-595">userID == 0</label>
-			<label kind="assignment" x="-714" y="-578">userID = 0</label>
+			<label kind="guard" x="-748" y="-603">userID == 0</label>
+			<label kind="assignment" x="-731" y="-586">userID = 0</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
 			<target ref="id6"/>
-			<label kind="assignment" x="-578" y="-680">numberOfFiles++</label>
-			<nail x="-518" y="-688"/>
+			<label kind="assignment" x="-680" y="-739">numberOfFiles++</label>
+			<nail x="-629" y="-722"/>
 		</transition>
 		<transition>
 			<source ref="id7"/>
 			<target ref="id6"/>
-			<label kind="synchronisation" x="-875" y="-714">validLink?</label>
-			<label kind="assignment" x="-901" y="-688">numberOfLinks++</label>
-			<nail x="-833" y="-697"/>
+			<label kind="synchronisation" x="-1054" y="-756">validLink?</label>
+			<label kind="assignment" x="-1071" y="-739">numberOfLinks++</label>
+			<nail x="-1020" y="-722"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-620" y="-603">numberOfFiles &lt;= FILE_LIMIT</label>
-			<nail x="-518" y="-603"/>
+			<label kind="guard" x="-697" y="-663">numberOfFiles &lt;= FILE_LIMIT</label>
+			<nail x="-629" y="-663"/>
 		</transition>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id7"/>
-			<label kind="guard" x="-926" y="-586">numberOfFiles &gt; numberOfLinks</label>
-			<label kind="synchronisation" x="-875" y="-603">requestLink!</label>
-			<nail x="-833" y="-595"/>
+			<label kind="guard" x="-1113" y="-646">numberOfFiles &gt; numberOfLinks</label>
+			<label kind="synchronisation" x="-1054" y="-663">requestLink!</label>
+			<nail x="-1029" y="-664"/>
 		</transition>
 		<transition>
 			<source ref="id5"/>
@@ -177,13 +177,13 @@ int numberOfLinks = 0;</declaration>
 		<parameter>chan &amp;requestEdit, chan &amp;requestView</parameter>
 		<declaration>bool canView;
 bool canEdit;</declaration>
-		<location id="id12" x="-459" y="-1028">
-			<name x="-476" y="-1062">initial</name>
+		<location id="id12" x="-952" y="-1147">
+			<name x="-969" y="-1181">initial</name>
 		</location>
-		<location id="id13" x="-459" y="-807">
-			<name x="-476" y="-799">menu</name>
+		<location id="id13" x="-952" y="-1079">
+			<name x="-935" y="-1088">menu</name>
 		</location>
-		<location id="id14" x="-612" y="-722">
+		<location id="id14" x="-952" y="-926">
 		</location>
 		<init ref="id12"/>
 		<transition>
@@ -193,17 +193,17 @@ bool canEdit;</declaration>
 		<transition>
 			<source ref="id13"/>
 			<target ref="id14"/>
-			<label kind="synchronisation" x="-544" y="-739">requestView?</label>
-			<label kind="assignment" x="-544" y="-722">canView = true</label>
-			<nail x="-510" y="-722"/>
+			<label kind="synchronisation" x="-1147" y="-1020">requestView?</label>
+			<label kind="assignment" x="-1155" y="-994">canView = true</label>
+			<nail x="-1062" y="-1003"/>
 		</transition>
 		<transition>
 			<source ref="id13"/>
 			<target ref="id14"/>
-			<label kind="synchronisation" x="-629" y="-850">requestEdit?</label>
-			<label kind="assignment" x="-637" y="-833">canEdit = true,
+			<label kind="synchronisation" x="-841" y="-1020">requestEdit?</label>
+			<label kind="assignment" x="-841" y="-1003">canEdit = true,
 canView = true</label>
-			<nail x="-586" y="-807"/>
+			<nail x="-841" y="-1003"/>
 		</transition>
 		<transition>
 			<source ref="id12"/>
