@@ -138,8 +138,9 @@ int numberOfLinks = 0;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id9"/>
-			<label kind="guard" x="-748" y="-603">userID == 0</label>
-			<label kind="assignment" x="-731" y="-586">userID = 0</label>
+			<label kind="guard" x="-765" y="-586">userID == 0 &amp;&amp; 
+numberOfLinks &gt;= NUM_USERS</label>
+			<label kind="assignment" x="-688" y="-552">userID = 0</label>
 		</transition>
 		<transition>
 			<source ref="id8"/>
@@ -252,6 +253,11 @@ Note: We need a File limit otherwise, the user can create infinite files and the
 		</query>
 		<query>
 			<formula>A[] (userID &lt;= NUM_USERS)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (Paul.canEdit || Paul.canView || Alice.canEdit || Alice.canView) imply Bob.numberOfLinks &gt; 0
+</formula>
 			<comment></comment>
 		</query>
 	</queries>
