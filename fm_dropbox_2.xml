@@ -157,7 +157,7 @@ int numberOfLinks = 0;</declaration>
 		<transition>
 			<source ref="id6"/>
 			<target ref="id8"/>
-			<label kind="guard" x="-697" y="-663">numberOfFiles &lt;= FILE_LIMIT</label>
+			<label kind="guard" x="-697" y="-663">numberOfFiles &lt; FILE_LIMIT</label>
 			<nail x="-629" y="-663"/>
 		</transition>
 		<transition>
@@ -232,6 +232,26 @@ Note: We need a File limit otherwise, the user can create infinite files and the
 		</query>
 		<query>
 			<formula>E&lt;&gt; (Paul.canEdit &amp;&amp; Alice.canView)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Paul.canView &amp;&amp; Alice.canView)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (Bob.numberOfFiles &lt;= Bob.FILE_LIMIT)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>E&lt;&gt; (Bob.numberOfFiles &gt; Bob.FILE_LIMIT)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (Bob.numberOfFiles &lt;= 0 imply Bob.numberOfLinks == 0)</formula>
+			<comment></comment>
+		</query>
+		<query>
+			<formula>A[] (userID &lt;= NUM_USERS)</formula>
 			<comment></comment>
 		</query>
 	</queries>
